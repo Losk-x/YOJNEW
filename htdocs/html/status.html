@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <title>评测状态 | Online Judge</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../dist/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="../css/prettify.css" media="screen" rel="stylesheet">
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <link rel="icon" href="../images/icon.png" mce_href="../images/icon.png" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="../dist/DataTables/datatables.min.css" />
+  <link rel="stylesheet" type="text/css" href="../dist/DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css" />
+
+</head>
+
+<body onload="prettyPrint()">
+  <nav class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Online Judge</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="nav-home"><a href="index.html">首页</a></li>
+          <!--<li class="nav-sets"><a href="/OnlineJudge/sets">Problem Sets</a></li>-->
+          <li class="nav-problems"><a href="problems.html">题库</a></li>
+          <li class="nav-reports"><a href="contests">考试</a></li>
+          <li class="nav-homework"><a href="homework">作业</a></li>
+          <li class="nav-status"><a href="status.html">评测状态</a></li>
+          <!--<li class="nav-ranklist"><a href="/OnlineJudge/ranklist">排名</a></li>-->
+        </ul>  
+        <form action="login" method="POST" class="navbar-form navbar-right" style="margin: 5px">
+          <div class="form-group">
+
+            <input type="text" class="form-control input-sm" placeholder="用户名" name="username" maxlength="80">
+            <input type="password" class="form-control input-sm" placeholder="密码" name="password" maxlength="80">
+
+          </div>
+          <input type="submit" class="btn btn-primary" name="action" value="登录">
+          <a class="btn btn-success pull-right" href="signup">新用户注册</a>
+        </form>
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+  </nav>
+  <div id="wrap">
+    <div class="container">
+
+      <div class="alert alert-info">
+        这里是 <strong>评测</strong> 页面
+      </div>
+      <div class="page-header">
+
+        <h1>评测状态</h1>
+
+        <form class="form-inline" action="/action_page.php">
+          <div class="form-group">
+            <label for="name">题号/题名</label>
+            <input type="text" class="form-control" id="name">
+          </div>
+          <div class="form-group">
+            <label for="username">用户名</label>
+            <!--此处for填啥？-->
+            <input type="text" class="form-control" id="username">
+            <!--此处id 以及placeholder？-->
+          </div>
+          <div class="form-group">
+            <label for="sel1">语言</label>
+            <select class="form-control" id="sel1">
+              <option>c/c++</option>
+              <option>java</option>
+              <option>python</option>
+              <option>lisp</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="sel1">评测结果</label>
+            <select class="form-control" id="sel1">
+              <option>正确</option>
+              <option>错误</option>
+              <option>格式错误</option>
+              <option>运行超时</option>
+            </select>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox"> 模糊搜索</label>
+          </div>
+          <button type="submit" class="btn btn-default">Search</button>
+        </form>
+      </div>
+      <table id="example" class="display" style="width:100%">
+        <thead>
+          <tr>
+            <th>运行编号</th>
+            <th>题目名称</th>
+            <th>提交者</th>
+            <th>评测结果</th>
+            <th>得分</th>
+            <th>耗时</th>
+            <th>内存</th>
+            <th>语言</th>
+            <th>提交时间</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+        </tbody>
+        <!--tfoot>
+          <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>Start date</th>
+            <th>Salary</th>
+          </tr>
+        </tfoot>-->
+      </table>
+      <div id="push"></div>
+    </div> <!-- /container -->
+  </div>
+  <!--wrap-->
+
+  <div class="footer">
+    <div class="container">
+      <hr>
+      Powered by <a href="http://php.net/">PHP Technologies</a> |
+      <a href="">Contributors</a>
+      <br>
+      Copyright © 2018 <a href="">YOJ</a>.
+      All rights reserved.
+      <br>
+      0.0336 - render 0.0113 - instru - 0 queries - 0 @ portal </div>
+  </div>
+
+  <script src="../js/jquery-3.3.1.min.js"></script>
+  <script src="../dist/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+  <script src="../js/prettify.js"></script>
+  <!--script>
+    $(function () {
+      $("[rel=tooltip]").tooltip();
+    });
+  </script-->
+  <script src="../dist/DataTables/datatables.min.js"></script>
+  <script> $(function () { $('.nav-status').addClass('active'); }); </script>
+  <script>
+    $(document).ready(function () {
+      $('#example').DataTable({ "pageLength": 50 });
+    });
+  </script>
+
+
+  <audio controls="controls" style="display: none;"></audio>
+</body>
+
+</html>
